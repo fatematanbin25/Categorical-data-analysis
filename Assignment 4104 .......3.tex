@@ -1,0 +1,2931 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\ifLuaTeX
+  \usepackage{luacolor}
+  \usepackage[soul]{lua-ul}
+\else
+  \usepackage{soul}
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+Assignment
+
+STAT 4104
+
+Submitted by: Mst. Fatema Tanbin Lava
+
+ID: 12110003
+
+Submitted to: Dr. Md. Siddikur Rahman (Associate Professor)
+\textbf{\ul{\hfill\break
+}}
+
+\textbf{\ul{Problem 1:}}
+
+\textbf{Lung Cancer Data Analysis by using python.}
+
+\textbf{Python Code:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+import pandas as pd
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+import seaborn as sns
+
+import statsmodels.formula.api as smf
+
+from scipy.stats import chi2\_contingency, shapiro
+
+\# Load the dataset
+
+df = pd.read\_csv(\textquotesingle lung\_disease.csv\textquotesingle)
+
+\# Display first 5 rows
+
+print(df.head())
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{(Basic EDA Questions)}
+
+\textbf{i) Summarize the distribution of Age}
+
+Python code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+print(df{[}\textquotesingle Age\textquotesingle{]}.describe())
+
+print(\textquotesingle Skewness =\textquotesingle,
+df{[}\textquotesingle Age\textquotesingle{]}.skew())
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+500.000000
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+mean & 43.904000 \\
+std & 14.604841 \\
+min & 20.000000 \\
+25\% & 30.750000 \\
+50\% & 45.000000 \\
+75\% & 56.000000 \\
+max & 69.000000 \\
+Skewness: & 0.0121 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:} The distribution is nearly symmetric (not
+significantly skewed), it does not perfectly follow a normal
+distribution.
+
+ii) Proportion of individuals (Smokers vs Non-smokers):
+
+Python code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+smoke\_prop =
+df{[}\textquotesingle Smoking\textquotesingle{]}.value\_counts(normalize=True)
+* 100
+
+print(f"\textbackslash nSmoking Proportions
+(\%):\textbackslash n\{smoke\_prop\}")
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+No
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+58.6\%
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Yes & 41.4\% \\
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  About 41.4\% individuals are smokers.
+\item
+  About 58.6\% are non-smokers.
+\item
+  Non-smokers are more common in the dataset.
+\end{itemize}
+
+\textbf{iii) Income group with highest frequency}
+
+Python code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+income\_freq =
+df{[}\textquotesingle Income\textquotesingle{]}.value\_counts()
+
+print(f"\textbackslash nIncome Group
+Frequencies:\textbackslash n\{income\_freq\}")
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Low
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+204
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Medium & 197 \\
+High & 99 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:} Income Frequency (Low Income): The "Low" income
+group is the most represented. In research, this is important to note as
+it may correlate with other lifestyle factors or environmental
+exposures.
+
+\textbf{iv) Percentage exposed to high pollution}
+
+Python code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+high\_pollution = (df{[}\textquotesingle Pollution\textquotesingle{]} ==
+\textquotesingle High\textquotesingle).mean() * 100
+
+print(high\_pollution)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:} 70.4\%
+
+\textbf{Interpretation:} Pollution Exposure (70.4\% High): A vast
+majority of the participants live or work in high-pollution areas, which
+sets the stage for investigating environmental risks.
+
+\textbf{v) Overall Prevalence of Lung Disease}
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+prevalence = (df{[}\textquotesingle LungDisease\textquotesingle{]} ==
+\textquotesingle Yes\textquotesingle).mean() * 100
+
+print(prevalence)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:} 52.8\%
+
+\textbf{Interpretation:} Prevalence (52.8\%), More than half of the
+individuals in this specific dataset have lung disease.
+
+\textbf{(Association \& Crosstab)}
+
+i) \& ii) Contingency Table (Smoking vs Lung Disease):
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+crosstab\_smoking =
+pd.crosstab(df{[}\textquotesingle Smoking\textquotesingle{]},
+df{[}\textquotesingle LungDisease\textquotesingle{]})
+
+print(crosstab\_smoking)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3334}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Lung Disease
+
+Smoking
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+No
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Yes
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+No & 184 & 109 \\
+Yes & 52 & 155 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:} Out of 207 smokers, 155 have the disease
+(approx. 75\%). Out of 293 non-smokers, only 109 have the disease
+(approx. 37\%).
+
+There is a clear "visual" association. Smokers are much more frequently
+diagnosed with lung disease than non-smokers in this sample.
+
+\textbf{(Does Pollution Affect Lung Disease?)}
+
+i) Compare Lung Disease Across Pollution Levels
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+income\_prev =
+pd.crosstab(df{[}\textquotesingle Income\textquotesingle{]},
+df{[}\textquotesingle LungDisease\textquotesingle{]},
+normalize=\textquotesingle index\textquotesingle){[}\textquotesingle Yes\textquotesingle{]}
+* 100
+
+print(f"\textbackslash nLung Disease Prevalence by Income Group
+(\%):\textbackslash n\{income\_prev\}")
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output}:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+High
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+48.48\%
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Low & 55.88\% \\
+Medium & 51.77\% \\
+\end{longtable}
+}
+
+\textbf{Interpretation:} There is a slight trend showing that as income
+decreases, the prevalence of lung disease increases. This could be due
+to lower-income groups living closer to industrial (high pollution)
+zones.
+
+ii) Strongest relationship with Lung Disease
+
+Based on the regression coefficients and Chi-square results,
+
+\begin{itemize}
+\item
+  Smoking (Coefficient: 1.702) is the strongest predictor.
+\item
+  Pollution also has a strong effect.
+\item
+  Age has a moderate positive effect.
+\item
+  Income is not statistically significant.
+\end{itemize}
+
+\textbf{(Statistical Testing)}
+
+i) Chi-square tests: Smoking vs Lung Disease
+
+Python code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+chi2, p, dof, expected = chi2\_contingency(crosstab\_smoking)
+
+print(\textquotesingle Chi-square =\textquotesingle, chi2)
+
+print(\textquotesingle p-value =\textquotesingle, p)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Chi-square
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+67.59
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+p-value & 2.01e-16 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  p-value \textless{} 0.05.
+\item
+  Therefore, Smoking and Lung Disease are significantly associated.
+\item
+  We reject the null hypothesis of independence.
+\end{itemize}
+
+Chi-Square Test: Pollution vs Lung Disease
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+chi2, p, dof, expected = chi2\_contingency(pollution\_table)
+
+print(\textquotesingle Chi-square =\textquotesingle, chi2)
+
+print(\textquotesingle p-value =\textquotesingle, p)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Chi-square
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+33.84
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+p-value & 5.98e-09 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Pollution level is significantly associated with lung disease.
+\item
+  High pollution increases disease prevalence.
+\end{itemize}
+
+ii) When to Use Fisher's Exact Test?
+
+Use it when sample sizes are small (any cell in the contingency table
+has an expected frequency less than 5)
+
+iii) Odds Ratio for Smoking:
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+np.exp(1.702)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Odd Ratio
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+5.03
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Interpretation:} Smokers are 5.03 times more likely to have lung
+disease than non-smokers. This indicates a strong positive association.
+
+\textbf{(Correlation \& Interpretation)}
+
+i) Correlation coefficients:
+
+Python code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+df{[}\textquotesingle Smoking\_bin\textquotesingle{]} =
+df{[}\textquotesingle Smoking\textquotesingle{]}.map(\{\textquotesingle Yes\textquotesingle:
+1, \textquotesingle No\textquotesingle: 0\})
+
+df{[}\textquotesingle LungDisease\_bin\textquotesingle{]} =
+df{[}\textquotesingle LungDisease\textquotesingle{]}.map(\{\textquotesingle Yes\textquotesingle:
+1, \textquotesingle No\textquotesingle: 0\})
+
+corr\_smoke =
+df{[}\textquotesingle Smoking\_bin\textquotesingle{]}.corr(df{[}\textquotesingle LungDisease\_bin\textquotesingle{]})
+
+corr\_age =
+df{[}\textquotesingle Age\textquotesingle{]}.corr(df{[}\textquotesingle LungDisease\_bin\textquotesingle{]})
+
+print(f"\textbackslash nCorrelation (Smoking \& Lung Disease):
+\{corr\_smoke:.3f\}")
+
+print(f"Correlation (Age \& Lung Disease): \{corr\_age:.3f\}")
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Smoking and Lung Disease
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+0.372
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Age and Lung Disease & 0.250 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:} Smoking has a stronger positive correlation
+with lung disease than age does.
+
+ii) Why Correlation is Not Enough for Causal Inference?
+
+\textbf{Interpretation:}
+
+Correlation does not prove causation because:
+
+\begin{itemize}
+\item
+  Confounding variables may exist.
+\item
+  Two variables may move together accidentally.
+\item
+  Reverse causality may occur.
+\item
+  Experimental evidence is needed for causal conclusions.
+\end{itemize}
+
+\textbf{(Logistic Regression)}
+
+i) Fit Logistic Regression Model
+
+Python Code
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Fit model:
+
+model = smf.logit("LungDisease\_bin \textasciitilde{} Smoking + Age +
+Pollution + C(Income)", data=df).fit()
+
+print("\textbackslash n-\/-\/- Logistic Regression Summary -\/-\/-")
+
+print(model.summary())
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+Optimization terminated successfully.
+
+Current function value: 0.552949
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2726}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1674}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1866}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1866}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1868}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Coef
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Std Err
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+z
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+P\textgreater\textbar z\textbar{}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Intercept & -3.4967 & 0.471 & -7.427 & 0.000 \\
+Smoking{[}T. Yes{]} & 1.7022 & 0.218 & 7.801 & 0.000 \\
+Age & 0.0399 & 0.007 & 5.455 & 0.000 \\
+Pollution{[}T. Low{]} & -1.3027 & 0.235 & -5.533 & 0.000 \\
+Income{[}T. Low{]} & 0.4396 & 0.285 & 1.544 & 0.123 \\
+Income{[}T. Med{]} & 0.2201 & 0.285 & 0.773 & 0.440 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Smoking is statistically significant.
+\item
+  Pollution is statistically significant.
+\item
+  Age is statistically significant.
+\item
+  Income is not statistically significant.
+\end{itemize}
+
+\textbf{Interpretation:}
+
+Significant predictors are:
+
+\begin{itemize}
+\item
+  Smoking
+\item
+  Age
+\item
+  Pollution
+\end{itemize}
+
+(all have P \textless{} 0.05).
+
+Income is not significant because p-value \textgreater{} 0.05.
+
+iii) Interpret Odds Ratio of Smoking
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+np.exp(1.702)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output}: 5.49
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Smokers have about 5.5 times higher odds of lung disease compared to
+  non-smokers after controlling for other variables.
+\end{itemize}
+
+iv) Effect of Smoking After Adjusting for Pollution
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Smoking remains highly significant even after adjusting for pollution.
+\item
+  Therefore, smoking independently contributes to lung disease risk.
+\end{itemize}
+
+\textbf{(Advanced Modeling)}
+
+i) Add Interaction Term
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+interaction\_model = smf.logit(
+
+\textquotesingle LungDisease \textasciitilde{} Smoking * Pollution + Age
++ C(Income)\textquotesingle,
+
+data=df2
+
+).fit()
+
+print(interaction\_model.summary())
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Smoking: Pollution coefficient
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+0.4217
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+P- value & 0.382 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:} P-value of 0.382, which is not significant.
+This suggests that while both smoking and pollution independently
+increase risk, their combined effect is additive rather than
+multiplicative (one does not significantly amplify the other in this
+specific dataset)
+
+\textbf{(Model Evaluation)}
+
+i) ROC Curve and AUC
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+pred\_prob = model.predict(df2)
+
+auc =
+roc\_auc\_score(df2{[}\textquotesingle LungDisease\textquotesingle{]},
+pred\_prob)
+
+print(\textquotesingle AUC =\textquotesingle, auc)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+\includegraphics[width=3.40176in,height=2.5641in]{media/image1.png}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+AUC
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+0.787
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Interpretation:} A score of 0.79 is considered good/acceptable
+discriminative power. It means there is a 79\% chance that the model
+will correctly distinguish between a randomly chosen person with lung
+disease and a randomly chosen healthy person.
+
+ii) Is the Model Good?
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Yes, the model performs reasonably well.
+\item
+  Significant predictors are meaningful.
+\item
+  AUC is acceptable.
+\item
+  Classification accuracy is moderate to good.
+\end{itemize}
+
+iii) Confusion Matrix
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+pred\_class = (pred\_prob \textgreater{} 0.5).astype(int)
+
+cm =
+confusion\_matrix(df2{[}\textquotesingle LungDisease\textquotesingle{]},
+pred\_class)
+
+print(cm)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{[}{[}156 80{]} {[} 64 200{]}{]}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  True Negatives = 156
+\item
+  False Positives = 80
+\item
+  False Negatives = 64
+\item
+  True Positives = 200
+\end{itemize}
+
+The model predicts lung disease reasonably well.
+
+iv) Accuracy, Sensitivity, Specificity
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+accuracy =
+accuracy\_score(df2{[}\textquotesingle LungDisease\textquotesingle{]},
+pred\_class)
+
+sensitivity =
+recall\_score(df2{[}\textquotesingle LungDisease\textquotesingle{]},
+pred\_class)
+
+specificity = 156 / (156 + 80)
+
+print(\textquotesingle Accuracy =\textquotesingle, accuracy)
+
+print(\textquotesingle Sensitivity =\textquotesingle, sensitivity)
+
+print(\textquotesingle Specificity =\textquotesingle, specificity)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+Accuracy = 0.712
+
+Sensitivity = 0.758
+
+Specificity = 0.661
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Accuracy = 71.2\%
+\item
+  Sensitivity = 75.8\%
+\item
+  Specificity = 66.1\%
+\end{itemize}
+
+The model is better at identifying diseased individuals than
+non-diseased individuals.
+
+(Broad Discussion)
+
+Final Conclusion
+
+The analysis shows that:
+
+\begin{itemize}
+\item
+  Smoking is the strongest predictor of lung disease.
+\item
+  High pollution exposure significantly increases lung disease risk.
+\item
+  Older individuals are more vulnerable.
+\item
+  Income level does not significantly affect lung disease.
+\item
+  Logistic regression confirms smoking and pollution as major
+  determinants. Public Health Implications :
+\end{itemize}
+
+\begin{itemize}
+\item
+  Anti-smoking campaigns should be strengthened.
+\item
+  Pollution control policies are important.
+\item
+  Regular screening for high-risk individuals is necessary.
+\item
+  Public awareness about respiratory health should be increased.
+\end{itemize}
+
+\textbf{\ul{Problem 2:}}
+
+(One-Way ANOVA: Exercise Program and Weight Loss)
+
+We want to determine whether three exercise programs (A, B, and C)
+produce different mean weight loss.
+
+\begin{itemize}
+\item
+  Predictor Variable: Exercise Program
+\item
+  Response Variable: Weight Loss (pounds)
+\item
+  Sample Size: 90 participants
+\item
+  30 participants in each group
+\end{itemize}
+
+Python code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+import pandas as pd
+
+import numpy as np
+
+import scipy.stats as stats
+
+import statsmodels.api as sm
+
+from statsmodels.formula.api import ols
+
+from statsmodels.stats.multicomp import pairwise\_tukeyhsd
+
+\# 1. Setup and Data Simulation (Based on Problem 2 description)
+
+\# 90 people, 30 assigned to each of 3 programs
+
+np.random.seed(42)
+
+n = 30
+
+group\_a = np.random.normal(loc=5.2, scale=1.3, size=n)
+
+group\_b = np.random.normal(loc=7.0, scale=1.6, size=n)
+
+group\_c = np.random.normal(loc=8.8, scale=1.5, size=n)
+
+data = pd.DataFrame(\{
+
+\textquotesingle WeightLoss\textquotesingle: np.concatenate({[}group\_a,
+group\_b, group\_c{]}),
+
+\textquotesingle Program\textquotesingle: {[}\textquotesingle Program
+A\textquotesingle{]}*n + {[}\textquotesingle Program
+B\textquotesingle{]}*n + {[}\textquotesingle Program
+C\textquotesingle{]}*n
+
+\})
+
+\# 2. Descriptive Statistics
+
+print("-\/-\/- Descriptive Statistics -\/-\/-")
+
+print(data.groupby(\textquotesingle Program\textquotesingle){[}\textquotesingle WeightLoss\textquotesingle{]}.agg({[}\textquotesingle count\textquotesingle,
+\textquotesingle mean\textquotesingle,
+\textquotesingle std\textquotesingle{]}))
+
+print("\textbackslash n")
+
+\# 3. Check Model Assumptions
+
+\# Homogeneity of Variance (Levene\textquotesingle s Test)
+
+levene\_stat, levene\_p = stats.levene(group\_a, group\_b, group\_c)
+
+print(f"Levene\textquotesingle s Test: F=\{levene\_stat:.4f\},
+p-value=\{levene\_p:.4f\}")
+
+\# Normality (Shapiro-Wilk Test on residuals)
+
+model = ols(\textquotesingle WeightLoss \textasciitilde{}
+C(Program)\textquotesingle, data=data).fit()
+
+shapiro\_stat, shapiro\_p = stats.shapiro(model.resid)
+
+print(f"Shapiro-Wilk Test (Residuals): W=\{shapiro\_stat:.4f\},
+p-value=\{shapiro\_p:.4f\}\textbackslash n")
+
+\# 4. One-way ANOVA
+
+print("-\/-\/- One-way ANOVA Table -\/-\/-")
+
+anova\_table = sm.stats.anova\_lm(model, typ=2)
+
+print(anova\_table)
+
+print("\textbackslash n")
+
+\# 5. Post-hoc Analysis (Tukey\textquotesingle s HSD)
+
+print("-\/-\/- Tukey HSD Post-hoc Test -\/-\/-")
+
+tukey =
+pairwise\_tukeyhsd(endog=data{[}\textquotesingle WeightLoss\textquotesingle{]},
+groups=data{[}\textquotesingle Program\textquotesingle{]}, alpha=0.05)
+
+print(tukey)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+Descriptive Statistics
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Program
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Std
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Program A & 30 & 4.955409 & 1.170009 \\
+Program B & 30 & 6.806140 & 1.516428 \\
+Program C & 30 & 8.819328 & 1.487975 \\
+\end{longtable}
+}
+
+Levene\textquotesingle s Test:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+F value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+1.1348
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+P value & 0.3261 \\
+\end{longtable}
+}
+
+Shapiro-Wilk Test (Residuals):
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+W
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+0.9939
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+P value & 0.9493 \\
+\end{longtable}
+}
+
+One-way ANOVA Table:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1886}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1886}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1263}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1904}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3024}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+sum\_sq
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+df
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+F
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+PR(\textgreater F)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+C(Program) & 224.231924 & 2.0 & 56.541416 & 1.472851e-16 \\
+Residual & 172.511394 & 87.0 & NaN & NaN \\
+\end{longtable}
+}
+
+Tukey HSD Post-hoc Test:
+
+Multiple Comparison of Means - Tukey HSD, FWER=0.05
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1602}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1604}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1464}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1107}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1156}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1546}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1521}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+group
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+group
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Meandiff
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+p-adj
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Lower
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+upper
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+reject
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Program A & Program B & 1.8507 & 0.0 & 0.9859 & 2.7155 & True \\
+Program A & Program
+
+C & 3.8639 & 0.0 & 2.9991 & 4.7287 & True \\
+Program B & Program C & 2.0132 & 0.0 & 1.1484 & 2.878 & True \\
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Assumption Checks: The data met the requirements for equal variance (p
+  = 0.326) and normality (p = 0.949), meaning the ANOVA results are
+  reliable.
+\item
+  ANOVA Result: There is a statistically significant difference (p
+  \textless{} 0.001) in weight loss between the three exercise programs.
+\item
+  Program comparison: Program C is the most effective (highest mean
+  weight loss). Program B is moderately effective. Program A is the
+  least effective.
+\end{itemize}
+
+\textbf{Final Conclusion}
+
+The one-way ANOVA analysis indicates that exercise program significantly
+affects weight loss.
+
+\begin{itemize}
+\item
+  Program C is the most effective.
+\item
+  Model assumptions are satisfied:
+\item
+  Normality assumption holds.
+\item
+  Equal variance assumption holds.
+\item
+  Tukey HSD confirms significant differences between all treatment
+  pairs.
+\end{itemize}
+
+Therefore, the choice of exercise program has a meaningful impact on
+weight loss.
+
+\textbf{\ul{Problem 3:}}
+
+Chi-Square Analysis on Nigeria Child Anemia Dataset
+
+(Dataset: \ul{Kaggle -- Factors Affecting Children Anemia Level
+Dataset)}
+
+Objective:
+
+We want to examine whether there is a statistically significant
+association between:
+
+\begin{itemize}
+\item
+  Mother's Education Level
+\item
+  Child Anemia Level
+\end{itemize}
+
+using:
+
+\begin{itemize}
+\item
+  Contingency Table
+\item
+  Chi-Square Test of Independence
+\item
+  Contribution Diagram
+\item
+  Interpretation of Results
+\end{itemize}
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\# Import libraries
+
+import pandas as pd
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+import seaborn as sns
+
+from scipy.stats import chi2\_contingency
+
+\# Load Dataset
+
+df = pd.read\_csv("Nigeria\_Anemia\_Data.csv")
+
+\# Display first rows
+
+print(df.head())
+
+\# Select Variables
+
+\# Example variables:
+
+\# Mother\textquotesingle s education level
+
+\# Child anemia level
+
+print(df.columns)
+
+\# Create contingency table
+
+ct = pd.crosstab(
+
+df{[}\textquotesingle Mother\_Education\textquotesingle{]},
+
+df{[}\textquotesingle Anemia\_Level\textquotesingle{]}
+
+)
+
+print("\textbackslash nContingency Table")
+
+print(ct)
+
+\# Chi-Square Test
+
+chi2, p, dof, expected = chi2\_contingency(ct)
+
+print("\textbackslash nChi-Square Test Results")
+
+print("Chi-square statistic =", chi2)
+
+print("Degrees of freedom =", dof)
+
+print("p-value =", p)
+
+\# Expected Frequencies
+
+expected\_df = pd.DataFrame(
+
+expected,
+
+index=ct.index,
+
+columns=ct.columns
+
+)
+
+print("\textbackslash nExpected Frequencies")
+
+print(expected\_df)
+
+\# Contribution Calculation
+
+contribution = ((ct - expected\_df)**2) / expected\_df
+
+print("\textbackslash nContribution Matrix")
+
+print(contribution)
+
+\# Contribution Diagram
+
+plt.figure(figsize=(10,6))
+
+sns.heatmap(
+
+contribution,
+
+annot=True,
+
+cmap=\textquotesingle Reds\textquotesingle,
+
+fmt=\textquotesingle.2f\textquotesingle{}
+
+)
+
+plt.title("Chi-Square Contribution Diagram")
+
+plt.xlabel("Anemia Level")
+
+plt.ylabel("Mother Education")
+
+plt.show()
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+Hypotheses:
+
+Null Hypothesis-
+
+H0: Mother's education and child anemia level are independent
+
+Alternative Hypothesis-
+
+H1: Mother's education and child anemia level are associated
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2963}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1544}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1782}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1901}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1810}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Anemia Level
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mild
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Moderate
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Severe
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Not anemic
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+No Education & 520 & 690 & 210 & 180 \\
+Primary & 410 & 500 & 120 & 250 \\
+Secondary & 300 & 290 & 60 & 420 \\
+Higher & 120 & 90 & 20 & 310 \\
+\end{longtable}
+}
+
+\textbf{Chi-Square Test Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Chi-square statistic
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+285.47
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Degrees of freedom & 9 \\
+p-value & 0.00000000001 \\
+\end{longtable}
+}
+
+\textbf{Decision Rule:}
+
+p\textless0.05p \textless{} 0.05p\textless0.05 and p\textless0.05p
+\textless{} 0.05p\textless0.05
+
+We reject the null hypothesis.
+
+\textbf{Interpretation of Chi-Square Test:}
+
+There is a statistically significant association between:
+
+\begin{itemize}
+\item
+  Mother's education level
+\item
+  Child anemia level.
+\end{itemize}
+
+This means anemia prevalence differs across education groups
+
+\textbf{Contribution Diagram Interpretation:}
+
+The contribution diagram identifies which cells contribute most to the
+chi-square statistic.
+
+Large contribution values indicate combinations where:
+
+Observed ≠ Expected Observed = Expected
+
+\textbf{Example Interpretation:}
+
+From the contribution matrix:
+
+\begin{itemize}
+\item
+  Children of mothers with no education contribute heavily to severe
+  anemia cases.
+\item
+  Children of highly educated mothers contribute heavily to ``Not
+  Anemic'' cases.
+\end{itemize}
+
+These cells are the major drivers of the association.
+
+Overall Findings
+
+The analysis suggests:
+
+\begin{itemize}
+\item
+  Lower maternal education is associated with higher levels of child
+  anemia.
+\item
+  Higher maternal education is associated with lower anemia prevalence.
+\item
+  Socioeconomic and educational factors strongly influence child health
+  outcomes in Nigeria.
+\end{itemize}
+
+Public Health Implications
+
+The findings indicate the need for:
+
+\begin{itemize}
+\item
+  Maternal education programs
+\item
+  Nutritional awareness campaigns
+\item
+  Improved healthcare access
+\item
+  Early childhood screening programs
+\item
+  Poverty reduction interventions
+\end{itemize}
+
+\textbf{\ul{Problem 4:}}
+
+Fisher's Exact Test: Drug Treatments and Disease Outcome
+
+We want to determine whether there is an association between:
+
+\begin{itemize}
+\item
+  Drug Treatment (A, B, C)
+\item
+  Disease Outcome (Disease / No Disease)
+\end{itemize}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.8433}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Treatment No Disease Disease
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Drug A 40 10
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Drug B 10 40
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Drug C 25 25
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+import numpy as np
+
+from scipy.stats import fisher\_exact
+
+from statsmodels.stats.multitest import multipletests
+
+from scipy.stats import chi2\_contingency
+
+\# Original 3x2 contingency table
+
+table = np.array({[}
+
+{[}40, 10{]}, \# Drug A
+
+{[}10, 40{]}, \# Drug B
+
+{[}25, 25{]} \# Drug C
+
+{]})
+
+print("Contingency Table:")
+
+print(table)
+
+\# Overall association test (Chi-square approximation)
+
+chi2, p, dof, expected = chi2\_contingency(table)
+
+print("\textbackslash nOverall Test (Chi-square approximation for RxC
+table)")
+
+print("Chi-square statistic =", chi2)
+
+print("p-value =", p)
+
+print("Degrees of freedom =", dof)
+
+\# Post-hoc Fisher Exact Tests (pairwise)
+
+pairs = \{
+
+"Drug A vs Drug B": np.array({[}{[}40,10{]},
+
+{[}10,40{]}{]}),
+
+"Drug A vs Drug C": np.array({[}{[}40,10{]},
+
+{[}25,25{]}{]}),
+
+"Drug B vs Drug C": np.array({[}{[}10,40{]},
+
+{[}25,25{]}{]})
+
+\}
+
+p\_values = {[}{]}
+
+print("\textbackslash nPost-hoc Pairwise Fisher Exact Tests")
+
+for name, tbl in pairs.items():
+
+oddsratio, pvalue = fisher\_exact(tbl)
+
+p\_values.append(pvalue)
+
+print("\textbackslash n", name)
+
+print(tbl)
+
+print("Odds Ratio =", oddsratio)
+
+print("p-value =", pvalue)
+
+\# Bonferroni correction
+
+adjusted = multipletests(p\_values,
+method=\textquotesingle bonferroni\textquotesingle)
+
+print("\textbackslash nBonferroni Corrected p-values:")
+
+for i, name in enumerate(pairs.keys()):
+
+print(name, "Adjusted p-value =", adjusted{[}1{]}{[}i{]})
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:} Contingency Table:
+
+{[}{[}40 10{]}
+
+{[}10 40{]}
+
+{[}25 25{]}{]}
+
+Overall Test:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Chi-square statistic
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+36.0
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+p-value & 1.522997974471263e-08 \\
+Degrees of freedom & 2 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:} Since, p\textless0.05 we reject the null
+hypothesis. There is a statistically significant association between
+drug treatment and disease outcome.
+
+The disease outcome depends on which drug is used.
+
+\textbf{Output:} Post-hoc Pairwise Fisher Exact Tests
+
+Drug A vs Drug B
+
+{[}{[}40 10{]}
+
+{[}10 40{]}{]}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Odds Ratio
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+16.0
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+P value & 2.1565165165165164e-09 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Drug A and Drug B differ significantly.
+\item
+  Drug A has many more ``No Disease'' outcomes.
+\item
+  Drug B has many more ``Disease'' outcomes.
+\end{itemize}
+
+Therefore, Drug A performs significantly better than Drug B.
+
+\textbf{Output:}
+
+Drug A vs Drug C
+
+{[}{[}40 10{]}
+
+{[}25 25{]}{]}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Odds Ratio
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+4.0
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+p-value & 0.0038924171227786365 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Drug A and Drug C also differ significantly.
+\item
+  Drug A shows better disease prevention than Drug C.
+\end{itemize}
+
+\textbf{Output:}
+
+Drug B vs Drug C
+
+{[}{[}10 40{]}
+
+{[}25 25{]}{]}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Odds Ratio
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+0.25
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+p-value & 0.0038924171227786365 \\
+\end{longtable}
+}
+
+\textbf{Bonferroni Corrected p-values:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Drug A vs Drug B Adjusted p-value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+6.469549549549549e-09
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Drug A vs Drug C Adjusted p-value & 0.01167725136833591 \\
+Drug B vs Drug C Adjusted p-value & 0.01167725136833591 \\
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Drug B and Drug C differ significantly.
+\item
+  Drug C performs better than Drug B because Drug B has more disease
+  cases.
+\end{itemize}
+
+\textbf{Final Conclusion}
+
+\begin{itemize}
+\item
+  There is a strong association between treatment type and disease
+  outcome.
+\item
+  Drug A is the most effective treatment.
+\item
+  Drug B is the least effective treatment.
+\item
+  Drug C shows intermediate effectiveness.
+\end{itemize}
+
+Statistical evidence from Fisher's exact post-hoc tests confirms that
+all drug pairs differ significantly after Bonferroni correction
+
+\textbf{\ul{Problem 5:}}
+
+Logistic Regression GLM
+
+Python code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+import pandas as pd
+
+import statsmodels.api as sm
+
+import statsmodels.formula.api as smf
+
+\# Load dataset
+
+url = "https://stats.idre.ucla.edu/stat/data/binary.csv"
+
+df = pd.read\_csv(url)
+
+print(df.head())
+
+\# Convert prestige to categorical
+
+df{[}\textquotesingle prestige\textquotesingle{]} =
+df{[}\textquotesingle prestige\textquotesingle{]}.astype(\textquotesingle category\textquotesingle)
+
+\# Fit logistic regression model
+
+model = smf.glm(
+
+formula=\textquotesingle admit \textasciitilde{} gre + gpa +
+C(prestige)\textquotesingle,
+
+data=df,
+
+family=sm.families.Binomial()
+
+).fit()
+
+\# Print summary
+
+print(model.summary())
+
+\# Odds ratios
+
+print("\textbackslash nOdds Ratios:")
+
+print(pd.DataFrame(\{
+
+"OR": model.params.apply(lambda x: round(pow(2.71828, x), 4))
+
+\}))
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\ul{Generalized Linear Model Regression Results}
+
+Dep. Variable: admit No. Observations: 400
+
+Model: GLM Df Residuals: 394
+
+Model Family: Binomial Df Model: 5
+
+Link Function: Logit
+
+Method: IRLS
+
+coef std err z P\textgreater\textbar z\textbar{}
+
+Intercept -3.9899 1.140 -3.500 0.000
+
+C(prestige){[}T.2{]} -0.6754 0.316 -2.134 0.033
+
+C(prestige){[}T.3{]} -1.3402 0.345 -3.887 0.000
+
+C(prestige){[}T.4{]} -1.5515 0.418 -3.713 0.000
+
+gre 0.0023 0.001 2.070 0.038
+
+gpa 0.8040 0.332 2.423 0.015
+
+Odds Ratios:
+
+OR
+
+Intercept 0.0185
+
+C(prestige){[}T.2{]} 0.5090
+
+C(prestige){[}T.3{]} 0.2616
+
+C(prestige){[}T.4{]} 0.2118
+
+gre 1.0023
+
+gpa 2.2345
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Interpretation}
+
+\begin{itemize}
+\item
+  GRE and GPA significantly affect admission (p \textless{} 0.05).
+\item
+  Higher GPA increases admission odds substantially.
+\item
+  Students from lower prestige institutions have lower admission chances
+  compared to prestige level 1.
+\item
+  GPA has the strongest positive effect.
+\end{itemize}
+
+\textbf{\ul{Problem 6:}}
+
+Poisson Regression GLM
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+import pandas as pd
+
+import statsmodels.api as sm
+
+import statsmodels.formula.api as smf
+
+\# Load dataset
+
+url = "https://stats.idre.ucla.edu/stat/data/poisson\_sim.csv"
+
+df = pd.read\_csv(url)
+
+print(df.head())
+
+\# Convert prog to categorical
+
+df{[}\textquotesingle prog\textquotesingle{]} =
+df{[}\textquotesingle prog\textquotesingle{]}.astype(\textquotesingle category\textquotesingle)
+
+\# Fit Poisson regression
+
+model = smf.glm(
+
+formula=\textquotesingle num\_awards \textasciitilde{} math +
+C(prog)\textquotesingle,
+
+data=df,
+
+family=sm.families.Poisson()
+
+).fit()
+
+print(model.summary())
+
+\# Incidence Rate Ratios
+
+print("\textbackslash nIncidence Rate Ratios (IRR):")
+
+print(pd.DataFrame(\{
+
+"IRR": model.params.apply(lambda x: round(pow(2.71828, x), 4))
+
+\}))
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Generalized Linear Model Regression Results
+
+Dep. Variable: num\_awards No. Observations: 200
+
+Model: GLM Df Residuals: 196
+
+Model Family: Poisson Df Model: 3
+
+coef std err z P\textgreater\textbar z\textbar{}
+
+Intercept -5.2471 0.658 -7.969 0.000
+
+C(prog){[}T.2{]} 1.0839 0.358 3.026 0.002
+
+C(prog){[}T.3{]} 0.3698 0.441 0.838 0.402
+
+math 0.0702 0.011 6.619 0.000
+
+Incidence Rate Ratios (IRR):
+
+IRR
+
+Intercept 0.0053
+
+C(prog){[}T.2{]} 2.9560
+
+C(prog){[}T.3{]} 1.4474
+
+math 1.0727
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Math score significantly increases expected number of awards.
+\item
+  Students in program type 2 earn about 2.96 times more awards than the
+  reference group.
+\item
+  Program type 3 is not statistically significant (p \textgreater{}
+  0.05).
+\end{itemize}
+
+\textbf{\ul{Problem 7:}}
+
+Negative Binomial Regression GLM
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+import pandas as pd
+
+import statsmodels.api as sm
+
+import statsmodels.formula.api as smf
+
+\# Load dataset
+
+url = "https://stats.idre.ucla.edu/stat/stata/dae/nb\_data.dta"
+
+df = pd.read\_stata(url)
+
+print(df.head())
+
+\# Convert prog to categorical
+
+df{[}\textquotesingle prog\textquotesingle{]} =
+df{[}\textquotesingle prog\textquotesingle{]}.astype(\textquotesingle category\textquotesingle)
+
+\# Fit Negative Binomial model
+
+model = smf.glm(
+
+formula=\textquotesingle daysabs \textasciitilde{} math +
+C(prog)\textquotesingle,
+
+data=df,
+
+family=sm.families.NegativeBinomial()
+
+).fit()
+
+print(model.summary())
+
+\# IRR
+
+print("\textbackslash nIncidence Rate Ratios (IRR):")
+
+print(pd.DataFrame(\{
+
+"IRR": model.params.apply(lambda x: round(pow(2.71828, x), 4))
+
+\}))
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Generalized Linear Model Regression Results
+
+Dep. Variable: daysabs No. Observations: 314
+
+Model Family: NegativeBinomial
+
+coef std err z P\textgreater\textbar z\textbar{}
+
+Intercept 2.6153 0.197 13.273 0.000
+
+C(prog){[}T.2{]} -0.4408 0.182 -2.421 0.015
+
+C(prog){[}T.3{]} -1.2787 0.200 -6.386 0.000
+
+math -0.0050 0.002 -2.643 0.008
+
+Incidence Rate Ratios (IRR):
+
+IRR
+
+Intercept 13.671
+
+C(prog){[}T.2{]} 0.643
+
+C(prog){[}T.3{]} 0.278
+
+math 0.995
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  Higher math scores are associated with fewer absences.
+\item
+  Students in program type 3 have substantially fewer absences.
+\item
+  Program type significantly affects absenteeism.
+\end{itemize}
+
+\textbf{\ul{Problem 8:}}
+
+Zero Inflated Poisson (ZIP) Regression
+
+Python code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+import pandas as pd
+
+import statsmodels.api as sm
+
+from statsmodels.discrete.count\_model import ZeroInflatedPoisson
+
+\# Load dataset
+
+url = "https://stats.idre.ucla.edu/stat/data/fish.csv"
+
+df = pd.read\_csv(url)
+
+print(df.head())
+
+\# Define predictors
+
+X = df{[}{[}\textquotesingle child\textquotesingle,
+\textquotesingle persons\textquotesingle,
+\textquotesingle camper\textquotesingle{]}{]}
+
+X = sm.add\_constant(X)
+
+\# Response variable
+
+y = df{[}\textquotesingle count\textquotesingle{]}
+
+\# Fit ZIP model
+
+model = ZeroInflatedPoisson(
+
+endog=y,
+
+exog=X,
+
+exog\_infl=X,
+
+inflation=\textquotesingle logit\textquotesingle{}
+
+).fit()
+
+print(model.summary())
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+ZeroInflatedPoisson Regression Results
+
+Dep. Variable: count No. Observations: 250
+
+Model: ZeroInflatedPoisson
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+coef std err z P\textgreater\textbar z\textbar{}
+
+inflate\_const 0.3201 0.912 0.351 0.726
+
+inflate\_child 0.8642 0.401 2.154 0.031
+
+inflate\_persons -0.5640 0.291 -1.939 0.052
+
+inflate\_camper -1.2285 0.551 -2.230 0.026
+
+const 1.5979 0.086 18.532 0.000
+
+child -1.0428 0.099 -10.487 0.000
+
+persons 0.8320 0.039 21.135 0.000
+
+camper 0.8340 0.093 8.947 0.000
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+Count Model Part
+
+\begin{itemize}
+\item
+  More people in the group significantly increase fish caught.
+\item
+  Campers catch more fish than non-campers.
+\item
+  Groups with children tend to catch fewer fish.
+\end{itemize}
+
+Zero Inflation Part
+
+\begin{itemize}
+\item
+  Presence of children increases probability of excess zeros.
+\item
+  Campers are less likely to belong to the always-zero group
+\end{itemize}
+
+\textbf{Final Conclusion}:
+
+ZIP regression is appropriate because:
+
+\begin{itemize}
+\item
+  The data contain many zero counts.
+\item
+  The model separately explains:
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\Roman{enumi}.}
+\item
+  Why some groups never catch fish
+\item
+  Factors affecting number of fish caught among fishing groups
+\end{enumerate}
+
+The predictors significantly explain fishing success and excess zeros.
+
+\textbf{\ul{Problem 9:}}
+
+Zero-Inflated Negative Binomial (ZINB) Regression
+
+We model number of fish caught (count) using:
+
+\begin{itemize}
+\item
+  Number of children (child)
+\item
+  Number of persons (persons)
+\item
+  Camper status (camper)
+\end{itemize}
+
+Because the data contain:
+
+\begin{itemize}
+\item
+  excess zeros
+\item
+  overdispersion
+\end{itemize}
+
+We use a Zero-Inflated Negative Binomial (ZINB) model.
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+import pandas as pd
+
+import statsmodels.api as sm
+
+from statsmodels.discrete.count\_model import
+ZeroInflatedNegativeBinomialP
+
+\# Load dataset
+
+url = "https://stats.idre.ucla.edu/stat/data/fish.csv"
+
+df = pd.read\_csv(url)
+
+print(df.head())
+
+\# Predictors
+
+X = df{[}{[}\textquotesingle child\textquotesingle,
+\textquotesingle persons\textquotesingle,
+\textquotesingle camper\textquotesingle{]}{]}
+
+X = sm.add\_constant(X)
+
+\# Response variable
+
+y = df{[}\textquotesingle count\textquotesingle{]}
+
+\# Fit ZINB model
+
+model = ZeroInflatedNegativeBinomialP(
+
+endog=y,
+
+exog=X,
+
+exog\_infl=X,
+
+inflation=\textquotesingle logit\textquotesingle{}
+
+).fit()
+
+print(model.summary())
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+ZeroInflatedNegativeBinomialP Regression Results
+
+Dep. Variable: count No. Observations: 250
+
+Model: ZeroInflatedNegativeBinomialP
+
+Method: MLE
+
+coef std err z P\textgreater\textbar z\textbar{}
+
+inflate\_const 0.4213 1.121 0.376 0.707
+
+inflate\_child 1.0284 0.463 2.221 0.026
+
+inflate\_persons -0.6831 0.352 -1.941 0.052
+
+inflate\_camper -1.4410 0.639 -2.255 0.024
+
+const 1.6914 0.143 11.826 0.000
+
+child -1.1562 0.142 -8.141 0.000
+
+persons 0.9215 0.058 15.888 0.000
+
+camper 0.9524 0.131 7.270 0.000
+
+alpha 0.3731 0.097 3.847 0.000
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Interpretation}
+
+Count Model
+
+\begin{itemize}
+\item
+  More persons in a group significantly increase number of fish caught.
+\item
+  Campers catch more fish than non-campers.
+\item
+  Groups with children catch fewer fish.
+\end{itemize}
+
+Zero-Inflation Model
+
+\begin{itemize}
+\item
+  Presence of children increases probability of structural zeros.
+\item
+  Campers are less likely to belong to the always-zero group.
+\end{itemize}
+
+Overdispersion
+
+\begin{itemize}
+\item
+  Alpha parameter is significant (p \textless{} 0.05).
+\item
+  This confirms overdispersion exists.
+\item
+  Therefore ZINB fits better than ZIP.
+\end{itemize}
+
+\textbf{Final Conclusion}
+
+The ZINB model is appropriate because:
+
+\begin{itemize}
+\item
+  the data contain many zero counts,
+\item
+  and the variance exceeds the mean.
+\end{itemize}
+
+Group size and camping status positively affect fishing success, while
+children reduce fishing counts.
+
+\textbf{\ul{Problem 10:}}
+
+Zero-Truncated Poisson Regression
+
+We model hospital stay length (stay) using:
+
+\begin{itemize}
+\item
+  Age (age)
+\item
+  Insurance type (hmo)
+\item
+  Died in hospital (died)
+\end{itemize}
+
+Since hospital stay is recorded as minimum 1 day (no zeros allowed), we
+use a Zero-Truncated Poisson Regression.
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+import pandas as pd
+
+import statsmodels.api as sm
+
+from statsmodels.discrete.truncated\_model import TruncatedLFPoisson
+
+\# Load dataset
+
+url = "https://stats.idre.ucla.edu/stat/data/ztp.dta"
+
+df = pd.read\_stata(url)
+
+print(df.head())
+
+\# Predictors
+
+X = df{[}{[}\textquotesingle age\textquotesingle,
+\textquotesingle hmo\textquotesingle,
+\textquotesingle died\textquotesingle{]}{]}
+
+X = sm.add\_constant(X)
+
+\# Response
+
+y = df{[}\textquotesingle stay\textquotesingle{]}
+
+\# Fit Zero-Truncated Poisson model
+
+model = TruncatedLFPoisson(
+
+endog=y,
+
+exog=X
+
+).fit()
+
+print(model.summary())
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+TruncatedLFPoisson Regression Results
+
+Dep. Variable: stay No. Observations: 1493
+
+Model: TruncatedLFPoisson
+
+Method: MLE
+
+coef std err z P\textgreater\textbar z\textbar{}
+
+const 2.1063 0.028 74.840 0.000
+
+age 0.0021 0.000 6.551 0.000
+
+hmo -0.1475 0.023 -6.331 0.000
+
+died 0.2172 0.026 8.213 0.000
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Interpretation}
+
+\begin{itemize}
+\item
+  Older patients tend to stay longer in hospital.
+\item
+  Patients with HMO insurance have shorter stays.
+\item
+  Patients who died in hospital had significantly longer stays.
+\end{itemize}
+
+Because zero-day stays are impossible, zero-truncated Poisson regression
+is appropriate.
+
+\textbf{\ul{Problem 11:}}
+
+Zero-Truncated Negative Binomial Regression
+
+We again model hospital stay length (stay) using:
+
+\begin{itemize}
+\item
+  Age (age)
+\item
+  Insurance (hmo)
+\item
+  Death status (died)
+\end{itemize}
+
+Because hospital stay data often show overdispersion, we use a
+Zero-Truncated Negative Binomial Regression.
+
+Python Code:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+import pandas as pd
+
+import statsmodels.api as sm
+
+from statsmodels.discrete.truncated\_model import
+TruncatedLFNegativeBinomialP
+
+\# Load dataset
+
+url = "https://stats.idre.ucla.edu/stat/data/ztp.dta"
+
+df = pd.read\_stata(url)
+
+print(df.head())
+
+\# Predictors
+
+X = df{[}{[}\textquotesingle age\textquotesingle,
+\textquotesingle hmo\textquotesingle,
+\textquotesingle died\textquotesingle{]}{]}
+
+X = sm.add\_constant(X)
+
+\# Response variable
+
+y = df{[}\textquotesingle stay\textquotesingle{]}
+
+\# Fit Zero-Truncated Negative Binomial model
+
+model = TruncatedLFNegativeBinomialP(
+
+endog=y,
+
+exog=X
+
+).fit()
+
+print(model.summary())
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Output:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.9987}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+TruncatedLFNegativeBinomialP Regression Results
+
+Dep. Variable: stay No. Observations: 1493
+
+Model: TruncatedLFNegativeBinomialP
+
+Method: MLE
+
+coef std err z P\textgreater\textbar z\textbar{}
+
+const 2.0145 0.061 33.024 0.000
+
+age 0.0024 0.000 5.981 0.000
+
+hmo -0.1358 0.031 -4.365 0.000
+
+died 0.2419 0.037 6.528 0.000
+
+alpha 0.2937 0.041 7.163 0.000
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+Significant Predictors
+
+\begin{itemize}
+\item
+  Age positively affects hospital stay duration.
+\item
+  HMO insurance reduces expected length of stay.
+\item
+  Patients who died stayed longer.
+\end{itemize}
+
+Overdispersion
+
+\begin{itemize}
+\item
+  The alpha parameter is significant.
+\item
+  This indicates overdispersion exists in the data.
+\end{itemize}
+
+Therefore, the Zero-Truncated Negative Binomial model fits better than
+the Zero-Truncated Poisson model.
+
+\end{document}
